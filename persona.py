@@ -9,8 +9,8 @@ class Clientes:
     def crear_cliente():
         nombre = str(input("Nombre del cliente: "))
         apellido = str(input("Apellido del cliente: "))
-        telefono = int(input("Dime el telefono del cliente: "))
-        id = int(input("Dime el id del cliente: "))
+        telefono = int(input("Telefono del cliente: "))
+        id = int(input("Id del cliente: "))
 
         return Clientes(nombre, apellido, telefono, id)
 
@@ -30,3 +30,21 @@ class Clientes:
 
     def clientes_morosos(lista_cliente):
         return [cliente for cliente in lista_cliente if cliente.saldo < 0]
+    
+
+class Empleado:
+    def __init__(self, nombre, apellido):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.desocupado = True
+        self.lista_tareas = []
+    
+    def crear_empleado():
+        nombre = str(input("Nombre del empelado: "))
+        apellido = str(input("Apellido del empleado: "))
+        return Empleado(nombre, apellido)
+    
+    def registrar_empleado(self, lista_empleados):
+        lista_empleados.append(self)
+    
+   
