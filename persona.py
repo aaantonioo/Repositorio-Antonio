@@ -47,8 +47,12 @@ class Empleado:
     def registrar_empleado(self, lista_empleados):
         lista_empleados.append(self)
     
-    def asignar_tarea():
+    def asignar_tarea(self, tarea, cancha):
         
+        self.lista_tareas.append(tarea)
+        self.desocupado = False
+        cancha.lista_canchas.append(self)
+
     
 
     
