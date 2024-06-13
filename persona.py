@@ -17,10 +17,10 @@ class Clientes:
     def agregar_cliente(self,lista_cliente):
         lista_cliente.append(self)
     
-    def quitar_cliente(self,id):
-
-        for cliente in self.clientes:
-            if cliente.id == id:
+    def quitar_cliente(self,lista_cliente):
+        identifcador = int(input("Dime el identificador del cliente que quieres eliminar: "))
+        for cliente in lista_cliente:
+            if cliente.id == identifcador:
                 self.clientes.remove(cliente)
                 print(f"Cliente con el id eliminado.")
                 return
@@ -55,9 +55,16 @@ class Empleado:
             cancha.lista_canchas.append(self)
     
     def quitar_tarea(self,tarea):
-        self.lista_tareas.remove(tarea)
-        if not self.tareas:
-            self.desocupado = True
+        nombre_empleado = str(input("A que empleado le quieres quitar la tarea: "))
+        for empleado in self.lista_tareas:
+            if empleado.nombre == nombre_empleado:
+                self.lista_tareas.remove(empleado)
+                print(f"Cliente con el id eliminado.")
+                return
+            
+            if not self.tareas:
+                self.desocupado = True
+        print("No hay ningun empelado con ese nombre")
     
 
 
