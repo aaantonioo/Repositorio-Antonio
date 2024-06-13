@@ -26,12 +26,7 @@ class Centro:
                 self.canchas()
             elif opcion == 2:
                 self.clientes()
-            elif opcion == 3:
-                self.empleado()
-            elif opcion == 4:
-                self.reserva()
-            elif opcion == 5:
-                pass
+            
 
     def canchas(self):
         while True:
@@ -88,6 +83,43 @@ class Centro:
                 Empleado.registrar_empleado()
             elif opcion == 3:
                 Empleado.asignar_tarea()
-                
+            elif opcion == 4:
+                Empleado.quitar_tarea()
+    
+    def reserva(self):
+        while True:
+            print("1. Crear reserva")
+            print("2. Registrar reserva")
+            print("3. Registrar pago")
+            print("4. Mostrar saldo")
+            print("5. Listar reservas por cancha")
+            print("6. Listar reservas por cliente")
+            print("7. Salir")
+            opcion = int(input("Opcion: "))
+
+            if opcion == 1:
+                Reserva.crear_reserva()
+            elif opcion == 2:
+                Reserva.registrar_reserva()
+            elif opcion == 3:
+                Reserva.registrar_pago()
+            elif opcion == 4:
+                Reserva.mostrar_saldo()
+            elif opcion == 5:
+                Reserva.listar_reservas_por_cancha()
+            elif opcion == 6:
+                Reserva.listar_reservas_por_cliente()
+            elif opcion == 7:
+                pass
+
+
+
+def main():
+    nombre = input("Introduce el nombre del centro: ")
+    direccion = input("Introduce la direccion del centro: ")
+    centro = Centro(nombre, direccion)
+    centro.menu()
+
+main()    
 
 
