@@ -22,14 +22,14 @@ class Clientes:
         for cliente in self.clientes:
             if cliente.id == id:
                 self.clientes.remove(cliente)
-                print(f"Cliente con identificador {id} eliminado.")
+                print(f"Cliente con el id eliminado.")
                 return
             
-        print(f"No se encontró ningún cliente con ese identificador")
+        print(f"No hay nigun cliente con ese id")
     
 
     def clientes_morosos(lista_cliente):
-        return [cliente for cliente in lista_cliente if cliente.saldo < 0]
+        return [ cliente for cliente in lista_cliente if cliente.saldo < 0]
     
 
 class Empleado:
@@ -46,5 +46,16 @@ class Empleado:
     
     def registrar_empleado(self, lista_empleados):
         lista_empleados.append(self)
+    
+    def asignar_tarea(self, tarea, cancha):
+        
+        self.lista_tareas.append(tarea)
+        self.desocupado = False
+        cancha.lista_canchas.append(self)
+
+    
+
+    
+
     
    
