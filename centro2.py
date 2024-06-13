@@ -26,6 +26,12 @@ class Centro:
                 self.canchas()
             elif opcion == 2:
                 self.clientes()
+            elif opcion == 3:
+                self.empleado()
+            elif opcion == 4:
+                self.reserva()
+            elif opcion == 5:
+                pass
             
 
     def canchas(self):
