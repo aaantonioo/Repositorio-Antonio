@@ -46,7 +46,14 @@ class Centro:
             if opcion == 1:
                 Cancha.crear_cancha()
             elif opcion == 2:
-                Cancha.listar_canchas_por_deporte()
+                deporte = input("Ingrese el deporte para listar las canchas: ")
+                canchas = Cancha.listar_canchas_por_deporte(self.lista_canchas, deporte)
+                if canchas:
+                    for cancha in canchas:
+                        print(f"Número: {cancha.numero}, Deporte: {cancha.deporte}, Precio: {cancha.precio}, Habilitada: {'Sí' if cancha.habilitada else 'No'}")
+                else:
+                    print(f"No hay canchas registradas para el deporte {deporte}.")
+                    
             elif opcion == 3:
                 Cancha.quitar_cancha()
             elif opcion == 4:
