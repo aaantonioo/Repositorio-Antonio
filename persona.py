@@ -47,11 +47,19 @@ class Empleado:
     def registrar_empleado(self, lista_empleados):
         lista_empleados.append(self)
     
-    def asignar_tarea(self, tarea, cancha):
-        
-        self.lista_tareas.append(tarea)
-        self.desocupado = False
-        cancha.lista_canchas.append(self)
+    def asignar_tarea(self, tarea, cancha,lista_empleados):
+        nombre_usuario = str(input("Dime el nombre del empleado que vas asignar una tarea: "))
+        if nombre_usuario in lista_empleados:
+            self.lista_tareas.append(tarea)
+            self.desocupado = False
+            cancha.lista_canchas.append(self)
+    
+    def quitar_tarea(self,tarea):
+        self.lista_tareas.remove(tarea)
+        if not self.tareas:
+            self.desocupado = True
+    
+
 
     
 
