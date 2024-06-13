@@ -6,16 +6,14 @@ class Clientes:
         self.identificador = identifcador
         self.saldo = 0 
     
-    def crear_cliente():
+    def crear_cliente(self,lista_cliente):
         nombre = str(input("Nombre del cliente: "))
         apellido = str(input("Apellido del cliente: "))
         telefono = int(input("Telefono del cliente: "))
         id = int(input("Id del cliente: "))
-
+        lista_cliente.append(self)
         return Clientes(nombre, apellido, telefono, id)
 
-    def agregar_cliente(self,lista_cliente):
-        lista_cliente.append(self)
     
     def quitar_cliente(self,lista_cliente):
         identifcador = int(input("Dime el identificador del cliente que quieres eliminar: "))
@@ -39,13 +37,12 @@ class Empleado:
         self.desocupado = True
         self.lista_tareas = []
     
-    def crear_empleado():
+    def crear_empleado(self, lista_empleados):
         nombre = str(input("Nombre del empelado: "))
         apellido = str(input("Apellido del empleado: "))
-        return Empleado(nombre, apellido)
-    
-    def registrar_empleado(self, lista_empleados):
+
         lista_empleados.append(self)
+        return Empleado(nombre, apellido)
     
     def asignar_tarea(self, tarea, cancha,lista_empleados):
         nombre_usuario = str(input("Dime el nombre del empleado que vas asignar una tarea: "))

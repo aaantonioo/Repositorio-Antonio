@@ -32,46 +32,43 @@ class Centro:
                 self.reserva()
             elif opcion == 5:
                 pass
-            
+
 
     def canchas(self):
         while True:
             
-            print("1. Crear cancha")
-            print("2. Agregar cancha")
-            print("3. Listas cancha por deporte")
-            print("4. Quitar cancha")
-            print("5. Salir")
+            print("1. Crear y agregar cancha")
+            print("2. Listas cancha por deporte")
+            print("3. Quitar cancha")
+            print("4. Salir")
             opcion = int(input("Opcion: "))
 
             if opcion == 1:
                 Cancha.crear_cancha()
             elif opcion == 2:
-                Cancha.agregar_cancha()
-            elif opcion == 3:
                 Cancha.listar_canchas_por_deporte()
-            elif opcion == 4:
+            elif opcion == 3:
                 Cancha.quitar_cancha()
-            elif opcion == 5:
+            elif opcion == 4:
                 pass
                 
     def clientes(self):
         while True:
             
-            print("1. Crear cliente")
-            print("2. Agregar cliente")
-            print("3. Quitar cliente")
-            print("4. Listar clientes morosos")
+            print("1. Crear cliente y agregar cliente")
+            print("2. Quitar cliente")
+            print("3. Listar clientes morosos")
+            print("4. Salir")
             opcion = int(input("Opcion: "))
 
             if opcion == 1:
                 Clientes.crear_cliente()
             elif opcion == 2:
-                Clientes.agregar_cliente()
-            elif opcion == 3:
                 Clientes.quitar_cliente()
-            elif opcion == 4:
+            elif opcion == 3:
                 Clientes.clientes_morosos()
+            elif opcion == 4:
+                pass
                 
     def empleado(self):
         while True:
