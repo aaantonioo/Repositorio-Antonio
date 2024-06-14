@@ -43,21 +43,33 @@ class Centro:
             print("4. Salir")
             opcion = int(input("Opcion: "))
 
-            opcion = input("Seleccione una opción: ")
 
-            if opcion == 1:
+            if opcion == "1":
                 cancha = Cancha.crear_cancha()
                 if cancha:
                     cancha.agregar_cancha(self.lista_canchas)
 
-            elif opcion == 2:
-                Cancha.agregar_cancha()
-            elif opcion == 3:
-                Cancha.listar_canchas_por_deporte()
-            elif opcion == 4:
-                Cancha.quitar_cancha()
-            elif opcion == 5:
-                pass
+            elif opcion == "2":
+                deporte = input("Ingrese el deporte para listar las canchas: ")
+                canchas = Cancha.listar_canchas_por_deporte(self.lista_canchas, deporte)
+                if canchas:
+                    for cancha in canchas:
+                        print(f"Número: {cancha.numero}, Deporte: {cancha.deporte}, Precio: {cancha.precio}, Habilitada: {'Sí' if cancha.habilitada else 'No'}")
+                else:
+                    print(f"No hay canchas registradas para el deporte {deporte}.")
+
+            elif opcion == "3":
+                numero_cancha = int(input("Ingrese el número de la cancha a quitar: "))
+                cancha = next((c for c in self.lista_canchas if c.numero == numero_cancha), None)
+                if cancha:
+                    cancha.quitar_cancha(self.lista_canchas)
+                else:
+                    print(f"No se encontró una cancha con número {numero_cancha}.")
+
+            elif opcion == "4":
+                break
+            else:
+                print("Opción no válida. Por favor, seleccione una opción válida.")
                 
     def clientes(self):
         while True:
@@ -80,21 +92,22 @@ class Centro:
     def empleado(self):
         while True:
            
-            print("1. Crear empleado")
+            print("1. Crear empleado y registrar")
             print("2. Registrar empleado")
             print("3. Asignar tarea")
             print("4. Quitar tarea")
+            print("5. Salir")
 
             opcion = int(input("Opcion: "))
 
             if opcion == 1:
                 Empleado.crear_empleado()
             elif opcion == 2:
-                Empleado.registrar_empleado()
-            elif opcion == 3:
                 Empleado.asignar_tarea()
-            elif opcion == 4:
+            elif opcion == 3:
                 Empleado.quitar_tarea()
+            elif opcion == 4:
+                pass
     
     def reserva(self):
         while True:
