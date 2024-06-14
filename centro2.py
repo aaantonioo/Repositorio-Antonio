@@ -26,46 +26,69 @@ class Centro:
                 self.canchas()
             elif opcion == 2:
                 self.clientes()
-            
+            elif opcion == 3:
+                self.empleado()
+            elif opcion == 4:
+                self.reserva()
+            elif opcion == 5:
+                pass
+
 
     def canchas(self):
         while True:
             
-            print("1. Crear cancha")
-            print("2. Agregar cancha")
-            print("3. Listas cancha por deporte")
-            print("4. Quitar cancha")
-            print("5. Salir")
+            print("1. Crear y agregar cancha")
+            print("2. Listas cancha por deporte")
+            print("3. Quitar cancha")
+            print("4. Salir")
             opcion = int(input("Opcion: "))
 
+            opcion = input("Seleccione una opción: ")
+
             if opcion == 1:
-                Cancha.crear_cancha()
+                cancha = Cancha.crear_cancha()
+                if cancha:
+                    cancha.agregar_cancha(self.lista_canchas)
+
             elif opcion == 2:
-                Cancha.agregar_cancha()
+                deporte = input("Ingrese el deporte para listar las canchas: ")
+                canchas = Cancha.listar_canchas_por_deporte(self.lista_canchas, deporte)
+                if canchas:
+                    for cancha in canchas:
+                        print(f"Número: {cancha.numero}, Deporte: {cancha.deporte}, Precio: {cancha.precio}, Habilitada: {'Sí' if cancha.habilitada else 'No'}")
+                else:
+                    print(f"No hay canchas registradas para el deporte {deporte}.")
+
             elif opcion == 3:
-                Cancha.listar_canchas_por_deporte()
+                numero_cancha = int(input("Ingrese el número de la cancha a quitar: "))
+                cancha = next((c for c in self.lista_canchas if c.numero == numero_cancha), None)
+                if cancha:
+                    cancha.quitar_cancha(self.lista_canchas)
+                else:
+                    print(f"No se encontró una cancha con número {numero_cancha}.")
+
             elif opcion == 4:
-                Cancha.quitar_cancha()
-            elif opcion == 5:
-                pass
+                break
+            else:
+                print("Opción no válida. Por favor, seleccione una opción válida.")
                 
     def clientes(self):
         while True:
             
-            print("1. Crear cliente")
-            print("2. Agregar cliente")
-            print("3. Quitar cliente")
-            print("4. Listar clientes morosos")
+            print("1. Crear cliente y agregar cliente")
+            print("2. Quitar cliente")
+            print("3. Listar clientes morosos")
+            print("4. Salir")
             opcion = int(input("Opcion: "))
 
             if opcion == 1:
                 Clientes.crear_cliente()
             elif opcion == 2:
-                Clientes.agregar_cliente()
-            elif opcion == 3:
                 Clientes.quitar_cliente()
-            elif opcion == 4:
+            elif opcion == 3:
                 Clientes.clientes_morosos()
+            elif opcion == 4:
+                pass
                 
     def empleado(self):
         while True:
@@ -97,20 +120,32 @@ class Centro:
             print("7. Salir")
             opcion = int(input("Opcion: "))
 
-            if opcion == 1:
-                Reserva.crear_reserva()
-            elif opcion == 2:
-                Reserva.registrar_reserva()
-            elif opcion == 3:
-                Reserva.registrar_pago()
-            elif opcion == 4:
-                Reserva.mostrar_saldo()
-            elif opcion == 5:
-                Reserva.listar_reservas_por_cancha()
-            elif opcion == 6:
-                Reserva.listar_reservas_por_cliente()
-            elif opcion == 7:
-                pass
+            if opcion == "1":
+                if not self.lista_canchas:
+                    print("No hay canchas registradas. Debe agregar al menos una cancha antes de crear una reserva.")
+                else:
+                    reserva = Reserva.crear_reserva(self.lista_clientes, self.lista_canchas)
+                    if reserva:
+                        reserva.registrar_reserva(self.lista_reservas)
+
+            elif opcion == "2":
+                if not self.lista_canchas:
+                    print("No hay canchas registradas.")
+                else:
+                    numero_cancha = int(input("Ingrese el número de la cancha para listar las reservas: "))
+                    Reserva.listar_reservas_por_cancha(self.lista_reservas, numero_cancha)
+
+            elif opcion == "3":
+                if not self.lista_clientes:
+                    print("No hay clientes registrados.")
+                else:
+                    identificador_cliente = input("Ingrese el identificador del cliente para listar las reservas: ")
+                    Reserva.listar_reservas_por_cliente(self.lista_reservas, identificador_cliente)
+
+            elif opcion == "4":
+                break
+            else:
+                print("Opción no válida. Por favor, seleccione una opción válida.")
 
 
 
