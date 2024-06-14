@@ -51,26 +51,13 @@ class Centro:
                     cancha.agregar_cancha(self.lista_canchas)
 
             elif opcion == 2:
-                deporte = input("Ingrese el deporte para listar las canchas: ")
-                canchas = Cancha.listar_canchas_por_deporte(self.lista_canchas, deporte)
-                if canchas:
-                    for cancha in canchas:
-                        print(f"Número: {cancha.numero}, Deporte: {cancha.deporte}, Precio: {cancha.precio}, Habilitada: {'Sí' if cancha.habilitada else 'No'}")
-                else:
-                    print(f"No hay canchas registradas para el deporte {deporte}.")
-
+                Cancha.agregar_cancha()
             elif opcion == 3:
-                numero_cancha = int(input("Ingrese el número de la cancha a quitar: "))
-                cancha = next((c for c in self.lista_canchas if c.numero == numero_cancha), None)
-                if cancha:
-                    cancha.quitar_cancha(self.lista_canchas)
-                else:
-                    print(f"No se encontró una cancha con número {numero_cancha}.")
-
+                Cancha.listar_canchas_por_deporte()
             elif opcion == 4:
-                break
-            else:
-                print("Opción no válida. Por favor, seleccione una opción válida.")
+                Cancha.quitar_cancha()
+            elif opcion == 5:
+                pass
                 
     def clientes(self):
         while True:
