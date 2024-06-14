@@ -44,12 +44,12 @@ class Centro:
             opcion = int(input("Opcion: "))
 
 
-            if opcion == "1":
+            if opcion == 1:
                 cancha = Cancha.crear_cancha()
                 if cancha:
                     cancha.agregar_cancha(self.lista_canchas)
 
-            elif opcion == "2":
+            elif opcion == 2:
                 deporte = input("Ingrese el deporte para listar las canchas: ")
                 canchas = Cancha.listar_canchas_por_deporte(self.lista_canchas, deporte)
                 if canchas:
@@ -58,7 +58,7 @@ class Centro:
                 else:
                     print(f"No hay canchas registradas para el deporte {deporte}.")
 
-            elif opcion == "3":
+            elif opcion == 3:
                 numero_cancha = int(input("Ingrese el número de la cancha a quitar: "))
                 cancha = next((c for c in self.lista_canchas if c.numero == numero_cancha), None)
                 if cancha:
@@ -66,7 +66,7 @@ class Centro:
                 else:
                     print(f"No se encontró una cancha con número {numero_cancha}.")
 
-            elif opcion == "4":
+            elif opcion == 4:
                 break
             else:
                 print("Opción no válida. Por favor, seleccione una opción válida.")
@@ -75,39 +75,69 @@ class Centro:
         while True:
             
             print("1. Crear cliente y agregar cliente")
-            print("2. Quitar cliente")
-            print("3. Listar clientes morosos")
-            print("4. Salir")
+            print("2. Listar clientes")
+            print("3. Quitar cliente")
+            print("4. Listar clientes morosos")
+            print("5. Salir")
             opcion = int(input("Opcion: "))
 
             if opcion == 1:
-                Clientes.crear_cliente()
+                cliente = Clientes.crear_cliente(self)
+                if cliente:
+                    cliente.agregar_cliente(self.lista_clientes)
             elif opcion == 2:
-                Clientes.quitar_cliente()
+                for cliente in self.lista_clientes:
+                    print(f"ID: {cliente.identificador}, Nombre: {cliente.nombre} {cliente.apellido}, Teléfono: {cliente.telefono}, Saldo: {cliente.saldo}")
             elif opcion == 3:
-                Clientes.clientes_morosos()
+                id = int(input("Dime el id del cliente que quieres eliminar: "))
+                cliente = next((c for c in self.lista_clientes if c.identificador == id), None)
+                if cliente:
+                    cliente.quitar_cliente(self.lista_clientes)
+                break
+
             elif opcion == 4:
-                pass
+                clientes_morosos = Clientes.clientes_morosos(self.lista_clientes)
+                if clientes_morosos:
+                    for cliente in clientes_morosos:
+                        print(f"ID: {cliente.identificador}, Nombre: {cliente.nombre} {cliente.apellido}, Saldo: {cliente.saldo}")
+            elif opcion == 5:
+                break
                 
     def empleado(self):
         while True:
            
             print("1. Crear empleado y registrar")
-            print("2. Registrar empleado")
-            print("3. Asignar tarea")
-            print("4. Quitar tarea")
-            print("5. Salir")
+            print("2. Asignar tarea")
+            print("3. Quitar tarea")
+            print("4. Salir")
+            
 
             opcion = int(input("Opcion: "))
 
             if opcion == 1:
-                Empleado.crear_empleado()
+                cliente = Empleado.crear_empleado(self)
+                if cliente:
+                    cliente.agregar_empleado(self.lista_empleado)
             elif opcion == 2:
-                Empleado.asignar_tarea()
+                        
+                        id_empleado = int(input("Ingrese el índice del empleado al que desea asignar tarea: ")) - 1
+                        empleado_seleccionado = self.lista_empleado[id_empleado]
+                        tarea = input("Ingrese la tarea que desea asignar: ")
+
+                        id_cancha = int(input("Ingrese el índice de la cancha que desea asignar al empleado: ")) - 1
+                        cancha_seleccionada = self.lista_canchas[id_cancha]
+
+                        empleado_seleccionado.asignar_tarea(tarea, cancha_seleccionada)
+                        print(f"Tarea '{tarea}' asignada exitosamente a {empleado_seleccionado.nombre} {empleado_seleccionado.apellido}.")
+                    
             elif opcion == 3:
-                Empleado.quitar_tarea()
+                nombre = str(input("Dime el nombre del empleado que quieres quitar: "))
+                empleado = next((e for e in self.lista_empleado if e.nombre == nombre), None)
+                if empleado:
+                    empleado.quitar_empleado(self.lista_empleado)
+                break
             elif opcion == 4:
-                pass
+                break
     
     def reserva(self):
         while True:
@@ -120,7 +150,7 @@ class Centro:
             print("7. Salir")
             opcion = int(input("Opcion: "))
 
-            if opcion == "1":
+            if opcion == 1:
                 if not self.lista_canchas:
                     print("No hay canchas registradas. Debe agregar al menos una cancha antes de crear una reserva.")
                 else:
@@ -128,21 +158,21 @@ class Centro:
                     if reserva:
                         reserva.registrar_reserva(self.lista_reservas)
 
-            elif opcion == "2":
+            elif opcion == 2:
                 if not self.lista_canchas:
                     print("No hay canchas registradas.")
                 else:
                     numero_cancha = int(input("Ingrese el número de la cancha para listar las reservas: "))
                     Reserva.listar_reservas_por_cancha(self.lista_reservas, numero_cancha)
 
-            elif opcion == "3":
+            elif opcion == 3:
                 if not self.lista_clientes:
                     print("No hay clientes registrados.")
                 else:
                     identificador_cliente = input("Ingrese el identificador del cliente para listar las reservas: ")
                     Reserva.listar_reservas_por_cliente(self.lista_reservas, identificador_cliente)
 
-            elif opcion == "4":
+            elif opcion == 4:
                 break
             else:
                 print("Opción no válida. Por favor, seleccione una opción válida.")
